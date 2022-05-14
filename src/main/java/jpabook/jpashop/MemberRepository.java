@@ -1,6 +1,6 @@
 package jpabook.jpashop;
 
-import org.junit.After;
+import jpabook.jpashop.domain.Member;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

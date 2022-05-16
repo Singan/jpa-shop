@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Orders;
+import jpabook.jpashop.etc.OrdersSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

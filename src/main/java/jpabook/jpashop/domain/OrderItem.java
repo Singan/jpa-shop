@@ -20,4 +20,11 @@ public class OrderItem {
     private Item item;
     private int orderPrice;
     private int count;
+
+
+    public void cancel(){
+        this.item.addStock(count);
+    }
+
+    public void 
 }

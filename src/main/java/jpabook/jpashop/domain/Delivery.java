@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import jpabook.jpashop.domain.en.DeliveryStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,11 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name="orders_id")
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "delivery")
     private Orders orders;
+
+    private Address address;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus deliveryStatus;
+
 }

@@ -19,7 +19,7 @@ public class Member {
     private Long id;
     @Column(name = "member_name")
     private String username;
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Orders> orders = new ArrayList<>();
 
     private Address address;

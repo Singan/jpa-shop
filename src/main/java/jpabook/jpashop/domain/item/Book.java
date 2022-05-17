@@ -19,7 +19,7 @@ public class Book extends Item {
     public void setBookForm(BookForm bookForm){
         this.setName(bookForm.getName());
         this.setPrice(bookForm.getPrice());
-        this.setStock(bookForm.getStockQuantity());
+        this.setStock(bookForm.getStock());
         this.setAuthor(bookForm.getAuthor());
         this.setIsbn(bookForm.getIsbn());
     }

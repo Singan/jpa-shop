@@ -30,7 +30,7 @@ public class OrderRepository {
                 "select o from Orders o join fetch o.member m " +
                         "where o.orderstatus = :status and m.username like :name",Orders.class)
                 .setParameter("status",ordersSearch.getOrderstatus())
-                .setParameter("name",ordersSearch.getUserName())
+                .setParameter("name",ordersSearch.getUsername())
                 .setMaxResults(1000).getResultList();
     }
     //JPA Criteria
@@ -43,12 +43,12 @@ public class OrderRepository {
         List<Predicate> criteria = new ArrayList<>();
 
         if(ordersSearch.getOrderstatus() != null){
-            Predicate status = cb.equal(o.get("status"),ordersSearch.getOrderstatus());
+            Predicate status = cb.equal(o.get("orderstatus"),ordersSearch.getOrderstatus());
             criteria.add(status);
         }
 
-        if(ordersSearch.getUserName() != null){
-            Predicate status = cb.like(m.get("name"),"%"+ordersSearch.getUserName()+"%");
+        if(ordersSearch.getUsername() != null){
+            Predicate status = cb.like(m.get("username"),"%"+ordersSearch.getUsername()+"%");
             criteria.add(status);
         }
 
@@ -58,4 +58,11 @@ public class OrderRepository {
         TypedQuery<Orders> query = em.createQuery(cq).setMaxResults(1000);
         return query.getResultList();
     }
+
+    public List<Orders> findAll(){
+
+        return em.createQuery("select o from Orders o join fetch o.member ",
+                Orders.class).getResultList();
+    }
+
 }

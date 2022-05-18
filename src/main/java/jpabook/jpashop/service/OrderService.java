@@ -2,6 +2,7 @@ package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.*;
 import jpabook.jpashop.domain.en.DeliveryStatus;
+import jpabook.jpashop.etc.OrdersSearch;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
@@ -43,7 +44,12 @@ public class OrderService {
         return orderRepository.find(orderId);
 
     }
-/*    public List<Orders> findOrders(OrderSearch orderSearch){
+    public List<Orders> findOrders(OrdersSearch orderSearch){
 
-    }*/
+        return orderRepository.findByCriteria(orderSearch);
+    }
+    public List<Orders> findAll(){
+        return orderRepository.findAll();
+
+    }
 }

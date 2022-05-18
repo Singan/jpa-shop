@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class OrdersSearch {
     private Orderstatus orderstatus;
-    private String userName;
+    private String username;
 }

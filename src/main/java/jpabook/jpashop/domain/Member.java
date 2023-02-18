@@ -18,7 +18,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
     @Column(name = "member_name")
-    private String username;
+    private String name;
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Orders> orders = new ArrayList<>();
 

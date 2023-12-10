@@ -23,6 +23,11 @@
                 <td th:text="${member.address?.city}"></td>
                 <td th:text="${member.address?.street}"></td>
                 <td th:text="${member.address?.zipcode}"></td>
+                <td>
+                    <a href="#" th:href="'javascript:cancel('+${member.id}+')'">
+                        회원제거
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -33,4 +38,13 @@
 </div> <!-- /container -->
 
 </body>
+<script>
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/members/" + id + "/delete");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 </html>

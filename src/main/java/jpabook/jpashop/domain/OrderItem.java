@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-import static javax.persistence.FetchType.*;
+import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
@@ -20,12 +20,12 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY,optional = false ,cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     private Item item;
 
     @JsonIgnore
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY,optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 

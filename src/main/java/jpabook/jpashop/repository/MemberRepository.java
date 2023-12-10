@@ -4,7 +4,9 @@ import jpabook.jpashop.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Repository
@@ -12,6 +14,7 @@ import java.util.List;
 public class MemberRepository {
 
     private final EntityManager em;
+    private final OrderRepository orderRepository;
 
     public void save(Member member) {
         em.persist(member);
@@ -24,6 +27,15 @@ public class MemberRepository {
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
+    }
+
+    @Transactional(readOnly = false)
+    public void delete(Long id) {
+        orderRepository.deleteOrderByMember(id);
+
+        int deletedCount = em.createQuery("delete from Member m where m.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 
     public List<Member> findByName(String name) {

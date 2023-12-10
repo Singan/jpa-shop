@@ -1,13 +1,12 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +32,10 @@ public class OrderRepository {
                 .getResultList();
     }
 
+    public void deleteOrderByMember(Long id){
+        em.createQuery("delete from OrderItem oi where oi.order.id = :id").setParameter("id",id).executeUpdate();
+        em.createQuery("delete from Order o where o.id = :id").setParameter("id",id).executeUpdate();
+    }
     public List<Order> findAllByString(OrderSearch orderSearch) {
 
             String jpql = "select o from Order o join o.member m";

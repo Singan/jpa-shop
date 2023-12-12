@@ -2,6 +2,8 @@ package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
@@ -15,7 +17,8 @@ public class MemberRepository {
 
     private final EntityManager em;
     private final OrderRepository orderRepository;
-
+    private final MapperTest mapperTest;
+    private final SqlSessionFactory sqlSessionFactory;
     public void save(Member member) {
         em.persist(member);
     }
@@ -25,8 +28,9 @@ public class MemberRepository {
     }
 
     public List<Member> findAll() {
-        return em.createQuery("select m from Member m", Member.class)
-                .getResultList();
+//        return em.createQuery("select m from Member m", Member.class)
+//                .getResultList();
+        return mapperTest.selectAll();
     }
 
     @Transactional(readOnly = false)
